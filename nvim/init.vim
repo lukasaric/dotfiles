@@ -38,11 +38,15 @@ noremap <C-k> <C-w>k
 nnoremap <silent> <space><space> :nohlsearch<Bar>:echo<CR>
 nnoremap [e :<C-u>execute 'move -1-'. v:count1<CR>
 nnoremap ]e :<C-u>execute 'move +'. v:count1<CR>
+nnoremap gpl :Git pull<CR>
+nnoremap gcm :Git commit<CR>
 nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>ga :Git add .<CR>
+nnoremap <leader>gp :Git -c push.default=current push<CR>
 nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
 nnoremap <leader>gc :GBranches track<CR>
-nnoremap <leader>gp :Git -c push.default=current push<CR>
 nnoremap <leader>x :silent !chmod +x %<CR>
 nnoremap <leader>pv :Ex<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
