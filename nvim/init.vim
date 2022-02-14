@@ -4,6 +4,7 @@ let mapleader=" "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:user_emmet_leader_key='<C-z>'
+let g:NERDTreeShowHidden=1
 
 syntax enable
 set t_8f=^[[38;2;%lu;%lu;%lum
