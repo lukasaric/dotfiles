@@ -1,1 +1,1 @@
-# VIM dotfiles
+# dotfiles
