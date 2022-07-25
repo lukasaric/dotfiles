@@ -1,10 +1,8 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 let mapleader=" "
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 let g:user_emmet_leader_key='<C-z>'
-let g:NERDTreeShowHidden=1
+let NERDTreeShowHidden=1
 
 syntax enable
 set t_8f=^[[38;2;%lu;%lu;%lum
@@ -26,6 +24,7 @@ set shortmess+=c
 set updatetime=100
 set smartcase
 set smartindent
+set modifiable
 
 if (exists('+colorcolumn'))
   set colorcolumn=80
@@ -36,18 +35,19 @@ noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
+nnoremap <c-s> :w<cr>
 nnoremap <silent> <space><space> :nohlsearch<Bar>:echo<CR>
 nnoremap [e :<C-u>execute 'move -1-'. v:count1<CR>
 nnoremap ]e :<C-u>execute 'move +'. v:count1<CR>
 nnoremap gpl :Git pull<CR>
-nnoremap gcm :Git commit<CR>
 nnoremap <C-p> :GFiles<CR>
+nnoremap gcm :Git commit<CR>
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gp :Git -c push.default=current push<CR>
+nnoremap <leader>gc :GBranches track<CR>
 nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
-nnoremap <leader>gc :GBranches track<CR>
 nnoremap <leader>x :silent !chmod +x %<CR>
 nnoremap <leader>pv :Ex<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
@@ -59,6 +59,10 @@ vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>tn  :tabnew<Space>
+nnoremap <leader>tc  :tabclose<CR>
+nnoremap <leader>rg  :Rg<CR>
+nnoremap <leader>pf :e#<CR>
 
 nmap <leader>sp :call <SID>SynStack()<CR>
 
@@ -73,7 +77,8 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-json',
   \ 'coc-css',
-  \ 'coc-eslint'
+  \ 'coc-eslint',
+  \ 'coc-vetur'
   \ ]
 
 " Use K to show documentation in preview window.
@@ -121,24 +126,31 @@ call plug#begin(expand('~/.vim/plugged'))
   Plug 'junegunn/fzf.vim'
   Plug 'stsewd/fzf-checkout.vim'
   Plug 'tpope/vim-surround'
-  Plug 'vim-airline/vim-airline'
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
   Plug 'mattn/emmet-vim'
   Plug 'bronson/vim-trailing-whitespace'
+  Plug 'nvim-lualine/lualine.nvim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'nvim-treesitter/playground'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'mhartington/oceanic-next'
+  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'duane9/nvim-rg'
 call plug#end()
 
 lua << EOF
 require('nvim-treesitter.configs').setup({
   ensure_installed = "maintained",
-  highlight = { enable = true } 
+  highlight = { enable = true }
 })
+require('lualine').setup {
+  options = { theme = 'tokyonight' }
+}
 EOF
 
-let g:oceanic_plus_terminal_italic = 1
-let g:airline_theme='oceanicnext'
-colorscheme oceanic-plus
+let g:tokyonight_italic_functions = 0
+let g:tokyonight_italic_variables = 0
+let g:tokyonight_italic_keywords = 0
+colorscheme tokyonight

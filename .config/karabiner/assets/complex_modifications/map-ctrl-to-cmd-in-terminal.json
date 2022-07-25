@@ -1,0 +1,52 @@
+{
+  "title": "map-left-ctrl-to-cmd-in-terminal",
+  "rules": [
+    {
+      "description": "Swap left-ctrl and command in Terminal",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                  "com.googlecode.iterm2",
+                  "io.alacritty",
+                  "net.kovidgoyal.kitty"
+                ]
+            }
+          ],
+          "from": {
+            "key_code": "left_command"
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                  "com.googlecode.iterm2",
+                  "io.alacritty",
+                  "net.kovidgoyal.kitty"
+              ],
+              "type": "frontmost_application_if"
+            }
+          ],
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+              {
+              "key_code": "left_command"
+              }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}

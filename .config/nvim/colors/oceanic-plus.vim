@@ -371,6 +371,7 @@ call s:hi('Defx_filename_directory',            s:blue,   '',       '',         
 
 call s:hi('CocErrorSign',                       s:red,    '',       '',          '')
 call s:hi('CocWarningSign',                     s:yellow, '',       '',          '')
+call s:hi('CocUnusedHighlight',                 s:softyellow, '',       '',          '')
 call s:hi('CocInfoSign',                        s:blue,   '',       '',          '')
 call s:hi('CocHintSign',                        s:cyan,   '',       '',          '')
 call s:hi('CocErrorFloat',                      s:red,    '',       '',          '')
