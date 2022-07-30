@@ -25,6 +25,9 @@ set updatetime=100
 set smartcase
 set smartindent
 set modifiable
+set clipboard=unnamedplus
+set signcolumn=yes
+set cursorline
 
 if (exists('+colorcolumn'))
   set colorcolumn=80
