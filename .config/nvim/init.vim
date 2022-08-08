@@ -27,7 +27,7 @@ set smartindent
 set modifiable
 set clipboard=unnamedplus
 set signcolumn=yes
-set cursorline
+set wildignore=*/node_modules/*
 
 if (exists('+colorcolumn'))
   set colorcolumn=80
@@ -85,30 +85,34 @@ let g:coc_global_extensions = [
   \ ]
 
 " Use K to show documentation in preview window.
-nnoremap <silent> <leader>k :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
-" Trigger completion
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -119,9 +123,11 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>f  <Plug>(coc-fix-current)
 nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>cc  <Plug>(coc)
 
 packadd! matchit
 call plug#begin(expand('~/.vim/plugged'))
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'preservim/nerdtree'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -136,24 +142,24 @@ call plug#begin(expand('~/.vim/plugged'))
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'ryanoasis/vim-devicons'
   Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'nvim-treesitter/playground'
-  Plug 'jiangmiao/auto-pairs'
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'duane9/nvim-rg'
+  Plug 'windwp/nvim-autopairs'
 call plug#end()
 
 lua << EOF
-require('nvim-treesitter.configs').setup({
-  ensure_installed = "maintained",
+require'nvim-treesitter.configs'.setup {
   highlight = { enable = true }
-})
-require('lualine').setup {
+}
+
+require'lualine'.setup {
   options = { theme = 'tokyonight' }
+}
+
+require'nvim-autopairs'.setup {
+  enable_check_bracket_line = false
 }
 EOF
 
 let g:tokyonight_italic_functions = 0
-let g:tokyonight_italic_variables = 0
-let g:tokyonight_italic_keywords = 0
 colorscheme tokyonight
