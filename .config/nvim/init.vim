@@ -43,7 +43,8 @@ nnoremap <silent> <space><space> :nohlsearch<Bar>:echo<CR>
 nnoremap [e :<C-u>execute 'move -1-'. v:count1<CR>
 nnoremap ]e :<C-u>execute 'move +'. v:count1<CR>
 nnoremap gpl :Git pull<CR>
-nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>p :GFiles<CR>
+nnoremap <C-p> :Files<CR>
 nnoremap gcm :Git commit<CR>
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>ga :Git add .<CR>
