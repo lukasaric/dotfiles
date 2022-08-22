@@ -77,6 +77,42 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+packadd! matchit
+call plug#begin(expand('~/.vim/plugged'))
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'preservim/nerdtree'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'windwp/nvim-autopairs'
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf.install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'stsewd/fzf-checkout.vim'
+  Plug 'tpope/vim-surround'
+  Plug 'mhinz/vim-signify'
+  Plug 'tpope/vim-fugitive'
+  Plug 'mattn/emmet-vim'
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'duane9/nvim-rg'
+call plug#end()
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true }
+}
+
+require'lualine'.setup {
+  options = { theme = 'tokyonight' }
+}
+
+require'nvim-autopairs'.setup {
+  enable_check_bracket_line = false
+}
+EOF
+
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-json',
@@ -125,42 +161,6 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>f  <Plug>(coc-fix-current)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>cc  <Plug>(coc)
-
-packadd! matchit
-call plug#begin(expand('~/.vim/plugged'))
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'preservim/nerdtree'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  Plug 'junegunn/fzf', { 'do': { -> fzf.install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'stsewd/fzf-checkout.vim'
-  Plug 'tpope/vim-surround'
-  Plug 'mhinz/vim-signify'
-  Plug 'tpope/vim-fugitive'
-  Plug 'mattn/emmet-vim'
-  Plug 'bronson/vim-trailing-whitespace'
-  Plug 'nvim-lualine/lualine.nvim'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-  Plug 'duane9/nvim-rg'
-  Plug 'windwp/nvim-autopairs'
-call plug#end()
-
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = { enable = true }
-}
-
-require'lualine'.setup {
-  options = { theme = 'tokyonight' }
-}
-
-require'nvim-autopairs'.setup {
-  enable_check_bracket_line = false
-}
-EOF
 
 let g:tokyonight_italic_functions = 0
 colorscheme tokyonight
