@@ -97,6 +97,7 @@ call plug#begin(expand('~/.vim/plugged'))
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'duane9/nvim-rg'
+  Plug 'Oldenborg/vim-px-to-rem'
 call plug#end()
 
 lua << EOF
