@@ -19,7 +19,7 @@ fi
 
 alias neo="nvim ."
 alias zshconfig="nvim $HOME/.zshrc"
-alias nvimconfig="nvim $HOME/.config/nvim/init.vim"
+alias nvimconfig="nvim $HOME/.config/nvim"
 alias zshreload="source $HOME/.zshrc"
 alias ohmyzsh="nvim $HOME/.oh-my-zsh"
 alias alacritty="nvim $HOME/.config/alacritty/alacritty.yml"
