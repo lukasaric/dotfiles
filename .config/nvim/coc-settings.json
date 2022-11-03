@@ -1,7 +1,0 @@
-{
-  "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["js", "ts", "vue"],
-  "eslint.run": "onSave",
-  "suggest.autoTrigger": "always",
-  "diagnostic.maxWindowHeight": 900
-}
