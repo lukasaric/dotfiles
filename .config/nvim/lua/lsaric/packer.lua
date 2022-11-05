@@ -42,7 +42,6 @@ return require("packer").startup(function(use)
 
 	-- add, delete, change surroundings (it's awesome)
 	use("tpope/vim-surround")
-	use("windwp/nvim-autopairs")
 	use("tpope/vim-commentary")
 	use("mhinz/vim-signify")
 	use("mattn/emmet-vim")
@@ -85,6 +84,8 @@ return require("packer").startup(function(use)
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
+
+	use("windwp/nvim-autopairs")
 	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- git integration
