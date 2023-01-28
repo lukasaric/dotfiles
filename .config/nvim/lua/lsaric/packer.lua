@@ -94,6 +94,7 @@ return require("packer").startup(function(use)
 
 	-- Database
 	use("tpope/vim-dadbod")
+	use("kristijanhusak/vim-dadbod-ui")
 
 	if packer_bootstrap then
 		require("packer").sync()
