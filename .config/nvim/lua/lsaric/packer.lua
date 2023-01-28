@@ -73,6 +73,7 @@ return require("packer").startup(function(use)
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
 	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+	use("amadeus/vim-mjml") -- mjml syntax support
 
 	-- PX to REM in styles
 	use("Oldenborg/vim-px-to-rem")
@@ -90,6 +91,9 @@ return require("packer").startup(function(use)
 
 	-- git integration
 	use("tpope/vim-fugitive")
+
+	-- Database
+	use("tpope/vim-dadbod")
 
 	if packer_bootstrap then
 		require("packer").sync()
