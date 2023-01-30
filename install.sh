@@ -1,3 +1,7 @@
+#!/bin/bash
+
+SELF_PATH="$( cd "$( dirname "$0" )" && pwd )"
+
 set_symlink() {
   path="$1"
   symlink_path="$2"
