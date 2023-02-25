@@ -45,7 +45,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-commentary")
 	use("mhinz/vim-signify")
 	use("mattn/emmet-vim")
-	use("bronson/vim-trailing-whitespace")
+	use("ntpeters/vim-better-whitespace")
 
 	-- Status line
 	use("nvim-lualine/lualine.nvim")
