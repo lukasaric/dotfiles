@@ -18,6 +18,8 @@ null_ls.setup({
 		formatting.eslint_d, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.stylelint, -- style formatter
+		formatting.fixjson, -- json formatter
+		diagnostics.jsonlint, --json linter
 		diagnostics.eslint_d.with({ -- js/ts linter
 			-- only enable eslint if root has .eslintrc.js
 			condition = function(utils)

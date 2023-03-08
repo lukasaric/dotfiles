@@ -9,15 +9,15 @@ if not actions_setup then
 end
 
 telescope.setup({
-  defaults = {
+	defaults = {
 		file_ignore_patterns = { ".git/" },
 		mappings = {
 			i = {
 				["<C-k>"] = actions.move_selection_previous,
 				["<C-j>"] = actions.move_selection_next,
-			}
-		}
-	}
+			},
+		},
+	},
 })
 
 telescope.load_extension("fzf")
