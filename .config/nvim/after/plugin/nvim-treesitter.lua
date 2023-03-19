@@ -35,4 +35,8 @@ treesitter.setup({
 	},
 	-- auto install above language parsers
 	auto_install = true,
+	-- enable context comments
+	context_commentstring = {
+		enable = true,
+	},
 })

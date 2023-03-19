@@ -42,6 +42,7 @@ return require("packer").startup(function(use)
 
 	-- add, delete, change surroundings (it's awesome)
 	use("tpope/vim-surround")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("tpope/vim-commentary")
 	use("mhinz/vim-signify")
 	use("mattn/emmet-vim")
