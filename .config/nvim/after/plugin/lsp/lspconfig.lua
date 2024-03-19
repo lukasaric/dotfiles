@@ -13,10 +13,9 @@ local servers = require("lsaric.lsp.servers")
 local keymap = vim.keymap
 
 -- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- keybind options
   local opts = { noremap = true, silent = true, buffer = bufnr }
-
   -- set keybinds
   keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   keymap.set("n", "gD", vim.lsp.buf.declaration, opts)

@@ -9,29 +9,22 @@ local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 -- to setup format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local utils = require("null-ls.utils")
+local helpers = require("null-ls.helpers")
+
+-- formatter settings: { <formatter name> : config }
+local cwdFn = helpers.cache.by_bufnr(function(params)
+  return utils.root_pattern("package.json")(params.bufname)
+end)
+
 null_ls.setup({
   -- setup formatters & linters
   sources = {
     --  to disable file types use
-    formatting.prettier, -- js/ts formatter
-    formatting.eslint_d, -- js/ts formatter
+    formatting.prettier,
     formatting.stylua, -- lua formatter
-    formatting.stylelint, -- style formatter
-    formatting.fixjson, -- json formatter
-    diagnostics.jsonlint, --json linter
-    diagnostics.eslint_d.with({ -- js/ts linter
-      diagnostics_format = "[eslint] #{m}\n(#{c})",
-      -- only enable eslint if root has .eslintrc.js
-      -- condition = function(utils)
-      -- 	return utils.root_has_file(".eslintrc")
-      -- end,
-    }),
-    diagnostics.stylelint.with({ -- styles linter
-      -- only enable eslint if root has .stylelint.config.js
-      -- condition = function(utils)
-      -- 	return utils.root_has_file(".stylelint.config.js")
-      -- end,
-    }),
+    formatting.stylelint.with({ cwd = cwdFn }), -- style formatter
+    diagnostics.stylelint.with({ cwd = cwdFn }),
   },
   -- configure format on save
   on_attach = function(current_client, bufnr)

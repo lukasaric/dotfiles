@@ -41,9 +41,9 @@ return require("packer").startup(function(use)
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
   -- add, delete, change surroundings (it's awesome)
-  use("tpope/vim-surround")
-  use("JoosepAlviste/nvim-ts-context-commentstring")
+  use("echasnovski/mini.surround")
   use("tpope/vim-commentary")
+  use("JoosepAlviste/nvim-ts-context-commentstring")
   use("mhinz/vim-signify")
   use("mattn/emmet-vim")
   use("ntpeters/vim-better-whitespace")
@@ -70,8 +70,14 @@ return require("packer").startup(function(use)
   use("neovim/nvim-lspconfig") -- easily configure language servers
   use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 
+  -- -- typescript tools
+  -- use({
+  -- 	"pmizio/typescript-tools.nvim",
+  -- 	requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  -- })
+
   -- formatting & linting
-  use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
+  use("nvimtools/none-ls.nvim", { requires = { "nvimtools/none-ls-extras.nvim" } }) -- configure formatters & linters
   use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
   use("amadeus/vim-mjml") -- mjml syntax support
   -- PX to REM in styles
@@ -94,6 +100,9 @@ return require("packer").startup(function(use)
   -- Database
   use("tpope/vim-dadbod")
   use("kristijanhusak/vim-dadbod-ui")
+
+  -- search and replace
+  use("yegappan/greplace")
 
   if packer_bootstrap then
     require("packer").sync()
