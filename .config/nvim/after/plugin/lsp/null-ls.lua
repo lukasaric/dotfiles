@@ -1,14 +1,17 @@
 local null_ls = require("null-ls")
 
+local utils = require("null-ls.utils")
+local helpers = require("null-ls.helpers")
+
 -- formatter settings: { <formatter name> : config }
+local cwdFn = helpers.cache.by_bufnr(function(params)
+	return utils.root_pattern("package.json")(params.bufname)
+end)
+
 local formatter_settings_map = {
-	prettier = {},
+	prettier = { cwdFn = cwdFn },
 }
 
--- linter settings: { <linter name> : config }
-local linter_settings_map = {
-	eslint = {},
-}
 
 local get_source = function(type, name)
 	local none_ls_source = "none-ls." .. type .. "." .. name
@@ -23,12 +26,6 @@ end
 
 -- null-ls setup
 local sources = {}
-for linter, config in pairs(linter_settings_map) do
-	local source = get_source("diagnostics", linter)
-	if source then
-		table.insert(sources, source.with(config))
-	end
-end
 -- formatters
 for formatter, config in pairs(formatter_settings_map) do
 	local source = get_source("formatting", formatter)
