@@ -27,9 +27,7 @@ mason_lspconfig.setup({
 mason_null_ls.setup({
   -- list of formatters & linters for mason to install
   ensure_installed = {
-    "prettier", -- ts/js formatter
     "stylua", -- lua formatter
-    "tailwindcss",
     "yamllint",
     "yamlfix",
     "yaml-language-server",
