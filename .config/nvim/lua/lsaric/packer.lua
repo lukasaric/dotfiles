@@ -70,15 +70,8 @@ return require("packer").startup(function(use)
   use("neovim/nvim-lspconfig") -- easily configure language servers
   use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 
-  -- -- typescript tools
-  -- use({
-  -- 	"pmizio/typescript-tools.nvim",
-  -- 	requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  -- })
-
   -- formatting & linting
-  use("nvimtools/none-ls.nvim", { requires = { "nvimtools/none-ls-extras.nvim" } }) -- configure formatters & linters
-  use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+  use("stevearc/conform.nvim")
   use("amadeus/vim-mjml") -- mjml syntax support
   -- PX to REM in styles
   use("Oldenborg/vim-px-to-rem")
