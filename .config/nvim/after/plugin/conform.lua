@@ -13,7 +13,7 @@ conform.setup({
     lua = { "stylua" },
     json = { "fixjson" },
     javascript = { "prettier", "dprint", "eslint_d" },
-    typeescript = { "prettier", "dprint", "eslint_d" },
+    typescript = { "prettier", "dprint", "eslint_d" },
     vue = { "prettier", "eslint_d" },
     yaml = { "yamlfix" },
   },
