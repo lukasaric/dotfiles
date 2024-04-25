@@ -12,9 +12,9 @@ conform.setup({
   formatters_by_ft = {
     lua = { "stylua" },
     json = { "fixjson" },
-    javascript = { "prettier", "dprint", "eslint_d" },
-    typescript = { "prettier", "dprint", "eslint_d" },
-    vue = { "prettier", "eslint_d" },
+    javascript = { "prettier", "dprint" },
+    typescript = { "prettier", "dprint" },
+    vue = { "prettier" },
     yaml = { "yamlfix" },
   },
 })
