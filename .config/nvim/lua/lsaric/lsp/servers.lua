@@ -8,4 +8,6 @@ return {
   "volar",
   "rust_analyzer",
   "eslint",
+  "jsonls",
+  "dprint"
 }
