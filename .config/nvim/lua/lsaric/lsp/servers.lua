@@ -1,6 +1,6 @@
 return {
   "astro",
-  "tsserver",
+  "ts_ls",
   "html",
   "cssls",
   "tailwindcss",
